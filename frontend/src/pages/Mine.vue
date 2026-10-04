@@ -5,6 +5,8 @@
     <article v-for="w in rows" :key="w.id" class="card">
       <h3>{{ w.title }}</h3>
       <span class="tag">{{ w.status }} · 到期 {{ w.expires_at }}</span>
+      <span v-if="w.dep_broken" class="dep-badge broken">⚠ 依赖破裂 · 前置 #{{ w.depends_on }}</span>
+      <p v-if="w.dep_broken" class="dep-note">前置核销被撤销，认领保持有效，待前置重新核销后恢复</p>
     </article>
   </div>
 </template>
