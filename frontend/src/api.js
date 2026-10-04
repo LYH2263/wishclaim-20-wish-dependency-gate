@@ -4,9 +4,12 @@ export async function api(path, opts = {}) {
     ...opts,
   })
   if (!r.ok) {
-    let detail = r.statusText
-    try { const j = await r.json(); detail = j.detail || JSON.stringify(j) } catch {}
-    throw new Error(typeof detail === 'string' ? detail : JSON.stringify(detail))
+    let payload = null
+    try { const j = await r.json(); payload = j.detail ?? j } catch {}
+    const msg = typeof payload === 'string' ? payload : payload ? JSON.stringify(payload) : r.statusText
+    const e = new Error(msg)
+    e.detail = payload && typeof payload === 'object' ? payload : null
+    throw e
   }
   if (r.status === 204) return null
   return r.json()

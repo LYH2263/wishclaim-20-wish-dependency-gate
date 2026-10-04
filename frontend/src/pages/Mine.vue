@@ -5,6 +5,8 @@
     <article v-for="w in rows" :key="w.id" class="card">
       <h3>{{ w.title }}</h3>
       <span class="tag">{{ w.status }} · 到期 {{ w.expires_at }}</span>
+      <span v-if="w.dep_broken" class="badge broken">依赖破裂 #{{ w.depends_on }} · 锁保持</span>
+      <span v-else-if="w.dep_blocked" class="badge grey">等前置 #{{ w.depends_on }}</span>
     </article>
   </div>
 </template>

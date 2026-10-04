@@ -3,10 +3,12 @@
     <h1 class="serif">愿望墙</h1>
     <p class="tag">无顶栏 · 瀑布流 · 点卡片认领</p>
     <div class="masonry">
-      <article v-for="w in rows" :key="w.id" class="card" @click="$router.push('/wishes/'+w.id)">
+      <article v-for="w in rows" :key="w.id" class="card" :class="{ blocked: w.dep_blocked }" @click="$router.push('/wishes/'+w.id)">
         <h3>{{ w.title || '（无标题）' }}</h3>
         <p>{{ w.note }}</p>
         <span class="tag">{{ w.status }} · {{ w.data_quality }}</span>
+        <span v-if="w.dep_blocked" class="badge grey">等前置 #{{ w.depends_on }}</span>
+        <span v-if="w.dep_broken" class="badge broken">依赖破裂 #{{ w.depends_on }}</span>
       </article>
     </div>
   </div>

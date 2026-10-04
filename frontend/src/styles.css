@@ -35,3 +35,8 @@ button.ghost { background: transparent; color: var(--ink); border: 1px solid var
 input, textarea { width: 100%; padding: 10px; border-radius: 12px; border: 1px solid var(--line); font: inherit; margin: 6px 0 12px; background: #fff; }
 .menu-btn { position: fixed; left: 16px; top: 16px; z-index: 10; }
 .err { color: #a33; }
+.badge { display: inline-block; font-size: 11px; border-radius: 8px; padding: 2px 8px; margin-left: 6px; }
+.badge.grey { background: #ddd3cc; color: #6b5d57; }
+.badge.broken { background: #a33; color: #fff; }
+.card.blocked { opacity: .55; }
+button:disabled { opacity: .5; cursor: not-allowed; }
